@@ -1,4 +1,6 @@
 import os
+import pipes
+import shlex
 import sys
 import subprocess
 
@@ -13,10 +15,11 @@ from tm_helpers import to_plist, from_plist, current_word
 
 __all__ = ('TM_DIALOG', 'TM_DIALOG2', 'tooltip', 'register_completion_images', 
     'current_identifier', 'identifier_before_dot', 'completion_popup', 
-    'call_dialog', 'get_input', 'caret_position', 'find_unindexed_files', 'from_without_import')
+    'call_dialog', 'get_input', 'caret_position', 'find_unindexed_files',
+    'from_without_import', 'detect_virtualenv')
 
-TM_DIALOG = os.environ['DIALOG_1']
-TM_DIALOG2 = os.environ['DIALOG']
+TM_DIALOG = pipes.quote(os.environ['DIALOG_1'])
+TM_DIALOG2 = pipes.quote(os.environ['DIALOG'])
 
 def tooltip(text):
     options = {'text':str(text)}
@@ -60,9 +63,11 @@ def completion_popup(proposals):
         
 
 def call_dialog(command, options=None, shell=True):
+    if shell:
+        command = shlex.split(command)
     popen = subprocess.Popen(
                  command,
-                 stdin=subprocess.PIPE, stdout=subprocess.PIPE,shell=shell)
+                 stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     if options:
         out, _ = popen.communicate(to_plist(options))
     else:
@@ -90,7 +95,7 @@ def caret_position(code):
 def find_unindexed_files(directory):
     """ finds all files that have changed since the .ropeproject/globalnames was last updated"""
     popen = subprocess.Popen(
-                 "find %s -newer %s/.ropeproject/globalnames -iname '*.py'" % (directory, directory),
+                 "find \"%s\" -newer \"%s/.ropeproject/globalnames\" -iname '*.py'" % (directory, directory),
                  stdin=subprocess.PIPE, stdout=subprocess.PIPE,shell=True)
     
     stdout, stderr = popen.communicate()
@@ -99,3 +104,12 @@ def find_unindexed_files(directory):
 def from_without_import():
     line = os.environ.get('TM_CURRENT_LINE')
     return line.find('from ') != -1 and line.find(' import ') == -1
+
+def detect_virtualenv():
+    file_path = os.environ['TM_FILEPATH']
+    path,_ = os.path.split(file_path)
+    while path != '/':
+        if os.path.exists(os.path.join(path,".Python")):
+            return path
+        path,_ = os.path.split(path)
+    return None

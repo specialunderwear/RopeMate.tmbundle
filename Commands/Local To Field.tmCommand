@@ -3,20 +3,20 @@
 <plist version="1.0">
 <dict>
 	<key>beforeRunningCommand</key>
-	<string>nop</string>
+	<string>saveActiveFile</string>
 	<key>command</key>
-	<string>refactor.py extract_method</string>
+	<string>refactor.py local_to_field</string>
 	<key>input</key>
 	<string>document</string>
 	<key>keyEquivalent</key>
 	<string>@</string>
 	<key>name</key>
-	<string>Extract Method</string>
+	<string>Local To Field</string>
 	<key>output</key>
 	<string>replaceDocument</string>
 	<key>scope</key>
 	<string>source.python</string>
 	<key>uuid</key>
-	<string>6ACE6EA8-D614-440F-A2DE-FD53D1DEA81B</string>
+	<string>D40BBBDD-2EDF-41A7-8B00-16E4442FCE4D</string>
 </dict>
 </plist>
