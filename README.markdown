@@ -8,6 +8,22 @@ Many thanks to Github user [specialunderwear](http://github.com/specialunderwear
 
 Copyright (C) 2010 Julian Eberius
 
+DEPENDENCIES
+------------
+
+RopeMate needs [rope](http://pypi.python.org/pypi/rope/), install it in the python TextMate uses,
+which by default is */usr/bin/python*. Most likely your system python is NOT the python in your
+path, so you need to:
+
+	/usr/bin/easy_install rope
+
+Or you could make TextMate look for packages in your own default python by adding the pythonpath to
+textmate. If you like that, go to Preferences -> Variables and add one entry:
+
+	PYTHONPATH 'the path to the python I installed rope in'
+
+That way you can keep your system python clean and still use rope in TextMate.
+
 CONFIGURATION
 -------------
 
