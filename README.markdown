@@ -20,7 +20,7 @@ path, so you need to:
 Or you could make TextMate look for packages in your own default python by adding the pythonpath to
 textmate. If you like that, go to Preferences -> Variables and add one entry:
 
-	PYTHONPATH 'the path to the python I installed rope in'
+	PYTHONPATH 'the path to the folder that contains the rope package'
 
 That way you can keep your system python clean and still use rope in TextMate.
 
