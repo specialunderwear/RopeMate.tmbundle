@@ -2,8 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>contactEmailRot13</key>
+	<string>ynef@creznaragznexref.ay</string>
+	<key>contactName</key>
+	<string>Lars van de Kerkhof</string>
 	<key>name</key>
 	<string>RopeMate</string>
+	<key>description</key>
+	<string>Integrates the Python refactoring/completion framework Rope with Textmate</string>
+	<key>deleted</key>
+	<array/>	
 	<key>ordering</key>
 	<array>
 		<string>6890A228-0BE8-4B15-8401-6E948EB91296</string>
